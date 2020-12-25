@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Formulaire de création d'article{% endblock %}
+
+{% block javascripts %} 
+   {{parent()}}
+<!-- Page level plugins -->
+  <script src="{{asset("vendor/datatables/jquery.dataTables.min.js")}}"></script>
+  <script src="{{asset("vendor/datatables/dataTables.bootstrap4.min.js")}}"></script>
+<!-- Page level custom scripts -->
+  <script src="{{asset("js/demo/datatables-demo.js")}}"></script>
+{% endblock %}
+{% block body %}
+<div class="card shadow  mb-4">
+    <div class="card-header  mb-4">
+      <h6 class="m-0 font-weight-bold text-primary">Nouvel Article</h6>
+    </div>
+    <div class="card-body">
+      {{ form(form) }}
+    </div>
+</div>
+{% endblock %}

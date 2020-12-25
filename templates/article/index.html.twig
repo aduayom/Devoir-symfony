@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategorieController!{% endblock %}
+
+{% block javascripts %} 
+   {{parent()}}
+<!-- Page level plugins -->
+  <script src="{{asset("vendor/datatables/jquery.dataTables.min.js")}}"></script>
+  <script src="{{asset("vendor/datatables/dataTables.bootstrap4.min.js")}}"></script>
+<!-- Page level custom scripts -->
+  <script src="{{asset("js/demo/datatables-demo.js")}}"></script>
+{% endblock %}
+{% block body %}
+  <div class="container-fluid">
+          <!-- Page Heading -->
+    
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            </div>
+            <div class="row mt-2">
+                <div class="col-sm-3 float-right">
+                    <a href="{{path("article_add")}}" class="btn btn-primary btn-icon-split">
+                        <span class="icon text-white-50">
+                            <i class="fas fa-plus"></i>
+                        </span>
+                        <span class="text">Modifier</span>
+                        </a>
+
+                    
+                </div>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>titre</th>
+                      <th class="w-25">contenu</th>
+                      <th class="w-25">categorie</th>
+                      <th class="w-50">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for article in article %}
+                    <tr>
+                        <td>{{article.titre}}</td> 
+                        <td>{{article.statut}}</td>
+                        <td>{{article.categorie.libelle}}</td>
+                        <td>
+                            <a href="{{path("article_add",{id:article.id})}}" class="btn btn-warning btn-icon-split">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </span>
+                            <span class="text">Modifier</span>
+                            </a>
+
+                            <a href="{{path("article_delete",{id:article.id})}}" class="btn btn-danger btn-icon-split delete">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-trash"></i>
+                            </span>
+                            <span class="text">Suprimmer</span>
+                            </a>
+                        </td>
+                    </tr>
+                    {% else %}
+                      Pas de catégorie
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+{% endblock %}
